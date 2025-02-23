@@ -1,0 +1,230 @@
+@model IEnumerable<LibraryManagementSystem.Models.BookViewModel>
+@{
+    ViewData["Title"] = "Book List";
+}
+
+<style>
+    /* Container: centered, max 900px */
+    .book-list-container {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 0 20px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    /* Header and buttons */
+    .book-list-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+    .book-list-header h1 {
+        margin: 0;
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #845ec2;
+    }
+
+    /* Rounded buttons (purple/pink) - normal (Back, Add Book) */
+    .btn-lumi {
+        background-color: #845ec2;
+        color: #fff;
+        border: none;
+        border-radius: 20px;
+        font-weight: 600;
+        transition: background-color 0.2s, transform 0.2s;
+        padding: 8px 20px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-lumi:hover {
+        background-color: #ff6fb7;
+        transform: translateY(-2px);
+        text-decoration: none;
+    }
+
+    .btn-lumi-outline {
+        background-color: #fff;
+        color: #845ec2;
+        border: 2px solid #845ec2;
+        border-radius: 20px;
+        font-weight: 600;
+        transition: border-color 0.2s, color 0.2s, transform 0.2s;
+        padding: 8px 20px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-lumi-outline:hover {
+        border-color: #ff6fb7;
+        color: #ff6fb7;
+        transform: translateY(-2px);
+        text-decoration: none;
+    }
+
+    /* Card */
+    .card-lumi {
+        border: none;
+        border-radius: 10px;
+        background-color: #fff;
+    }
+    .card-header-lumi {
+        background-color: #fff;
+        color: #845ec2;
+        font-weight: 600;
+        font-size: 1.2rem;
+        border-bottom: 1px solid #eee;
+        border-radius: 10px 10px 0 0;
+        padding: 15px;
+    }
+
+    /* Simple table styles */
+    .table-lumi {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 0;
+    }
+    .table-lumi thead {
+        border-bottom: 2px solid #845ec2;
+    }
+    .table-lumi th, .table-lumi td {
+        padding: 12px;
+        text-align: center;
+        border: none;
+        white-space: nowrap; 
+    }
+    .table-lumi tbody tr:nth-child(odd) {
+        background-color: #fafafa;
+    }
+
+    /* Operation buttons (icon-only, same size, circular) */
+    .op-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;       /* Fixed width */
+        height: 36px;      /* Fixed height */
+        border-radius: 30%; /* Circular */
+        margin: 2px;
+        text-decoration: none;
+        font-size: 1.1rem;
+        transition: transform 0.2s;
+    }
+
+    /* Purple solid icon button (View) */
+    .op-btn-view {
+        background-color: #845ec2;
+        color: #fff;
+        border: none;
+    }
+    .op-btn-view:hover {
+        background-color: #ff6fb7;
+        transform: translateY(-2px);
+    }
+
+    /* Purple border, white background (Edit) */
+    .op-btn-edit {
+        background-color: #fff;
+        color: #845ec2;
+        border: 2px solid #845ec2;
+    }
+    .op-btn-edit:hover {
+        border-color: #ff6fb7;
+        color: #ff6fb7;
+        transform: translateY(-2px);
+    }
+
+    /* Red border, white background (Delete) */
+    .op-btn-delete {
+        background-color: #fff;
+        color: #dc3545;
+        border: 2px solid #dc3545;
+    }
+    .op-btn-delete:hover {
+        background-color: #dc3545;
+        color: #fff;
+        transform: translateY(-2px);
+    }
+
+    /* Remove underline from all links */
+    a, a:visited, a:hover, a:active {
+        text-decoration: none !important;
+    }
+</style>
+
+<div class="book-list-container">
+    <div class="book-list-header">
+        <h1>Book List</h1>
+        <div>
+            <a asp-controller="Home" asp-action="Index" class="btn-lumi-outline me-2">
+                <i class="bi bi-arrow-left-circle"></i>
+            </a>
+            <a asp-controller="Book" asp-action="Create" class="btn-lumi">
+                <i class="bi bi-plus-circle"></i>
+            </a>
+        </div>
+    </div>
+
+    <div class="card-lumi">
+        <div class="card-header-lumi">
+            Book List
+        </div>
+        <div style="padding: 0 15px 15px;">
+            <table class="table-lumi">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Genre</th>
+                        <th>Author</th>
+                        <th style="width: 200px;">Operations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var book in Model)
+                        {
+                            <tr>
+                                <td>@book.Title</td>
+                                <td>@book.Genre</td>
+                                <td>@book.AuthorName</td>
+                                <td>
+                                    <!-- View (Purple) -->
+                                    <a asp-controller="Book" asp-action="Details" asp-route-id="@book.Id"
+                                       class="op-btn op-btn-view me-1"
+                                       title="View">
+                                        <i class="bi bi-eye"></i>
+                                    </a>
+                                    <!-- Edit (Purple Outline) -->
+                                    <a asp-controller="Book" asp-action="Edit" asp-route-id="@book.Id"
+                                       class="op-btn op-btn-edit me-1"
+                                       title="Edit">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                    <!-- Delete (Red Outline) -->
+                                    <a asp-controller="Book" asp-action="Delete" asp-route-id="@book.Id"
+                                       class="op-btn op-btn-delete"
+                                       title="Delete">
+                                        <i class="bi bi-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="4" class="text-muted">
+                                No books found.
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

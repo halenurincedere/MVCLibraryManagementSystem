@@ -1,0 +1,114 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<style>
+    .gradient-hero {
+        background: linear-gradient(135deg, #ff6fb7 0%, #330e6e 100%);
+        color: #fff;
+        text-align: center;
+        padding: 175px 10px; 
+    }
+
+    .gradient-hero h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    .gradient-hero p {
+        font-size: 1.25rem;
+        max-width: 700px;
+        margin: 0 auto 10px;
+        line-height: 1.6;
+    }
+
+    .hero-button {
+        display: inline-block;
+        text-decoration: none; 
+        background-color: #fff;
+        color: #845ec2;
+        border: none;
+        padding: 15px 30px;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 30px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        transition: transform 0.2s, box-shadow 0.2s;
+        margin-top: 20px; 
+    }
+
+    .hero-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+        text-decoration: none;
+    }
+
+.stats-section {
+    padding: 80px 35px;
+    text-align: center;
+    position: relative; 
+    z-index: 0;          
+    margin-top: -150px;   
+    border-radius: 40px 40px 0 0; 
+}
+
+.stat-card {
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    padding: 30px;
+    transition: transform 0.2s;
+    color: #333;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+
+.stat-card h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #845ec2;
+}
+
+.stat-card p {
+    font-size: 1rem;
+    color: #555;
+    margin: 0;
+}
+</style>
+
+<div class="gradient-hero">
+    <h1>Lumi Library Management System</h1>
+    <p>A simple and innovative Library Management System powered by .NET.</p>
+    <p>Join thousands of readers and authors around the world!</p>
+    <a class="hero-button" asp-controller="Author" asp-action="List">Get Started</a>
+</div>
+
+<div class="stats-section">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="stat-card">
+                    <h3>300+</h3>
+                    <p>Books</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card">
+                    <h3>100+</h3>
+                    <p>Authors</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-card">
+                    <h3>21+</h3>
+                    <p>Categories</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

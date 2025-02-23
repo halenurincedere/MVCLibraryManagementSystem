@@ -1,0 +1,149 @@
+@model LibraryManagementSystem.Models.BookViewModel
+@{
+    ViewData["Title"] = "Add New Book";
+}
+
+<style>
+    /* Form container */
+    .form-container {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 0 20px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    /* Card */
+    .card-lumi {
+        border: none;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .card-header-lumi {
+        background-color: #fff;
+        color: #845ec2; /* Purple */
+        font-weight: 600;
+        font-size: 1.2rem;
+        border-bottom: 1px solid #eee;
+        border-radius: 10px 10px 0 0;
+        padding: 15px;
+    }
+    .card-body-lumi {
+        padding: 20px;
+    }
+
+    /* Form elements */
+    label {
+        font-weight: 600;
+        color: #555;
+    }
+    .form-control, .form-select {
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+
+    /* Rounded buttons (purple/pink) */
+    .btn-lumi {
+        background-color: #845ec2; /* Purple */
+        color: #fff;
+        border: none;
+        border-radius: 20px;
+        font-weight: 600;
+        transition: background-color 0.2s, transform 0.2s;
+        padding: 8px 20px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-lumi:hover {
+        background-color: #ff6fb7; /* Pink */
+        transform: translateY(-2px);
+        text-decoration: none;
+    }
+
+    .btn-lumi-outline {
+        background-color: #fff;
+        color: #845ec2;
+        border: 2px solid #845ec2;
+        border-radius: 20px;
+        font-weight: 600;
+        transition: border-color 0.2s, color 0.2s, transform 0.2s;
+        padding: 8px 20px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-lumi-outline:hover {
+        border-color: #ff6fb7;
+        color: #ff6fb7;
+        transform: translateY(-2px);
+        text-decoration: none;
+    }
+
+    /* Remove underline from all links */
+    a, a:visited, a:hover, a:active {
+        text-decoration: none !important;
+    }
+</style>
+
+<div class="form-container">
+    <div class="card-lumi">
+        <div class="card-header-lumi">
+            Add New Book
+        </div>
+        <div class="card-body-lumi">
+            <form method="post">
+                <!-- Title -->
+                <div class="mb-2">
+                    <label for="Title">Title</label>
+                    <input type="text" class="form-control" asp-for="Title" required />
+                </div>
+
+                <!-- Genre -->
+                <div class="mb-2">
+                    <label for="Genre">Genre</label>
+                    <input type="text" class="form-control" asp-for="Genre" required />
+                </div>
+
+                <!-- Author -->
+                <div class="mb-2">
+                    <label for="AuthorId">Author</label>
+                    <select class="form-select" asp-for="AuthorId" asp-items="ViewBag.Authors">
+                        <option value="">Choose the Author...</option>
+                    </select>
+                </div>
+
+                <!-- ISBN -->
+                <div class="mb-2">
+                    <label for="ISBN">ISBN</label>
+                    <input type="text" class="form-control" asp-for="ISBN" required />
+                </div>
+
+                <!-- Publish Date -->
+                <div class="mb-2">
+                    <label for="PublishDate">Publish Date</label>
+                    <input type="date" class="form-control" asp-for="PublishDate" required />
+                </div>
+
+                <!-- Copies Available -->
+                <div class="mb-3">
+                    <label for="CopiesAvailable">Copies Available</label>
+                    <input type="number" class="form-control" asp-for="CopiesAvailable" required />
+                </div>
+
+                <div class="d-flex justify-content-end">
+                    <!-- Back (Outline) -->
+                    <a asp-action="List" class="btn-lumi-outline me-2">
+                        <i class="bi bi-arrow-left-circle"></i> Back
+                    </a>
+                    <!-- Submit (Purple) -->
+                    <button type="submit" class="btn-lumi">
+                        <i class="bi bi-check-circle"></i> Create
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

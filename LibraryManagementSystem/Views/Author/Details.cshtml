@@ -1,0 +1,129 @@
+@model LibraryManagementSystem.Models.AuthorViewModel
+@{
+    ViewData["Title"] = "Author Details";
+}
+
+<style>
+    /* General style */
+    .form-container {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 0 20px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    /* Card styling */
+    .card-lumi {
+        border: none;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .card-header-lumi {
+        background-color: #fff;
+        color: #845ec2;
+        font-weight: 600;
+        font-size: 1.2rem;
+        border-bottom: 1px solid #eee;
+        border-radius: 10px 10px 0 0;
+        padding: 15px;
+    }
+    .card-body-lumi {
+        padding: 20px;
+    }
+    .detail-item {
+        margin-bottom: 10px;
+        font-size: 1rem;
+        color: #555;
+    }
+    .detail-item strong {
+        color: #845ec2;
+    }
+    /* Simple table styles */
+    .table-lumi {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 20px 0;
+    }
+    .table-lumi thead {
+        border-bottom: 2px solid #845ec2;
+    }
+    .table-lumi th, .table-lumi td {
+        padding: 10px;
+        text-align: center;
+        border: none;
+        white-space: nowrap;
+    }
+    .table-lumi tbody tr:nth-child(odd) {
+        background-color: #fafafa;
+    }
+    /* Rounded outline button */
+    .btn-lumi-outline {
+        background-color: #fff;
+        color: #845ec2;
+        border: 2px solid #845ec2;
+        border-radius: 20px;
+        font-weight: 600;
+        transition: border-color 0.2s, color 0.2s, transform 0.2s;
+        padding: 8px 20px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-lumi-outline:hover {
+        border-color: #ff6fb7;
+        color: #ff6fb7;
+        transform: translateY(-2px);
+        text-decoration: none;
+    }
+    /* Remove underline from all links */
+    a, a:visited, a:hover, a:active {
+        text-decoration: none !important;
+    }
+</style>
+
+<div class="form-container">
+    <div class="card-lumi">
+        <div class="card-header-lumi">
+            @Model.FirstName @Model.LastName Details
+        </div>
+        <div class="card-body-lumi">
+            <div class="detail-item"><strong>Date of Birth:</strong> @Model.DateOfBirth.ToShortDateString()</div>
+
+            <div class="mt-3">
+                <h5 style="color: #845ec2; font-weight: 600;">Books</h5>
+                @if (Model.Books.Any())
+                {
+                    <table class="table-lumi">
+                        <thead>
+                            <tr>
+                                <th>Book Name</th>
+                                <th>Genre</th>
+                                <th>Publish Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var book in Model.Books)
+                            {
+                                <tr>
+                                    <td>@book.Title</td>
+                                    <td>@book.Genre</td>
+                                    <td>@book.PublishDate.ToShortDateString()</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <p class="detail-item text-muted">This author does not have any books yet.</p>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="mt-3 text-end">
+        <a asp-action="List" class="btn-lumi-outline" title="Back">
+            <i class="bi bi-arrow-left-circle"></i>
+        </a>
+    </div>
+</div>

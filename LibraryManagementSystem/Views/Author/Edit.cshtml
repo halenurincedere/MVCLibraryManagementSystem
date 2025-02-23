@@ -1,0 +1,117 @@
+@model LibraryManagementSystem.Models.AuthorViewModel
+@{
+    ViewData["Title"] = "Edit Author";
+}
+
+<style>
+    .form-container {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 0 20px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    .card-lumi {
+        border: none;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .card-header-lumi {
+        background-color: #fff;
+        color: #845ec2;
+        font-weight: 600;
+        font-size: 1.2rem;
+        border-bottom: 1px solid #eee;
+        border-radius: 10px 10px 0 0;
+        padding: 15px;
+    }
+    .card-body-lumi {
+        padding: 20px;
+    }
+    label {
+        font-weight: 600;
+        color: #555;
+    }
+    .form-control, .form-select {
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+
+    /* Rounded, modern button styles */
+    .btn-lumi {
+        background-color: #845ec2;
+        color: #fff;
+        border: none;
+        border-radius: 20px;
+        font-weight: 600;
+        transition: background-color 0.2s, transform 0.2s;
+        padding: 8px 20px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-lumi:hover {
+        background-color: #ff6fb7;
+        transform: translateY(-2px);
+        text-decoration: none;
+    }
+    .btn-lumi-outline {
+        background-color: #fff;
+        color: #845ec2;
+        border: 2px solid #845ec2;
+        border-radius: 20px;
+        font-weight: 600;
+        transition: border-color 0.2s, color 0.2s, transform 0.2s;
+        padding: 8px 20px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-lumi-outline:hover {
+        border-color: #ff6fb7;
+        color: #ff6fb7;
+        transform: translateY(-2px);
+        text-decoration: none;
+    }
+    a, a:visited, a:hover, a:active {
+        text-decoration: none !important;
+    }
+</style>
+
+<div class="form-container">
+    <div class="card-lumi">
+        <div class="card-header-lumi">
+            Edit Author
+        </div>
+        <div class="card-body-lumi">
+            <form method="post">
+                <div class="mb-2">
+                    <label asp-for="FirstName"></label>
+                    <input asp-for="FirstName" class="form-control" required />
+                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                </div>
+                <div class="mb-2">
+                    <label asp-for="LastName"></label>
+                    <input asp-for="LastName" class="form-control" required />
+                    <span asp-validation-for="LastName" class="text-danger"></span>
+                </div>
+                <div class="mb-2">
+                    <label asp-for="DateOfBirth"></label>
+                    <input type="date" asp-for="DateOfBirth" class="form-control" required />
+                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                </div>
+                <!-- Additional fields can be added here, e.g. biography etc. -->
+                <div class="d-flex justify-content-end">
+                    <a asp-action="List" class="btn-lumi-outline me-2" title="Cancel">
+                        <i class="bi bi-arrow-left-circle"></i>
+                    </a>
+                    <button type="submit" class="btn-lumi" title="Save">
+                        <i class="bi bi-check-circle"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,132 @@
+@model LibraryManagementSystem.Models.LoginFormViewModel
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<style>
+    /* Container for the entire form */
+    .form-container {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 0 20px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    /* Card styling */
+    .card-lumi {
+        border: none;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .card-header-lumi {
+        background-color: #fff;
+        color: #845ec2; /* Purple */
+        font-weight: 600;
+        font-size: 1.2rem;
+        border-bottom: 1px solid #eee;
+        border-radius: 10px 10px 0 0;
+        padding: 15px;
+    }
+    .card-body-lumi {
+        padding: 20px;
+    }
+
+    /* Form Elements */
+    label {
+        font-weight: 600;
+        color: #555;
+    }
+    .form-control, .form-select {
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+
+    /* Round buttons (purple/pink) */
+    .btn-lumi {
+        background-color: #845ec2; /* Purple */
+        color: #fff;
+        border: none;
+        border-radius: 20px;
+        font-weight: 600;
+        transition: background-color 0.2s, transform 0.2s;
+        padding: 8px 20px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-lumi:hover {
+        background-color: #ff6fb7; /* Pink */
+        transform: translateY(-2px);
+        text-decoration: none;
+    }
+
+    .btn-lumi-outline {
+        background-color: #fff;
+        color: #845ec2;
+        border: 2px solid #845ec2;
+        border-radius: 20px;
+        font-weight: 600;
+        transition: border-color 0.2s, color 0.2s, transform 0.2s;
+        padding: 8px 20px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-lumi-outline:hover {
+        border-color: #ff6fb7;
+        color: #ff6fb7;
+        transform: translateY(-2px);
+        text-decoration: none;
+    }
+
+    /* Remove underline from links */
+    a, a:visited, a:hover, a:active {
+        text-decoration: none !important;
+    }
+</style>
+
+<div class="form-container">
+    <div class="card-lumi">
+        <div class="card-header-lumi">
+            Login
+        </div>
+        <div class="card-body-lumi">
+            <form asp-action="Login" asp-controller="Account" method="post">
+                <!-- Email -->
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <!-- Password -->
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password" class="form-control" type="password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+
+                <!-- General Error Message -->
+                <div>
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                </div>
+
+                <!-- Buttons -->
+                <div class="d-flex justify-content-end">
+                    <!-- Back Button (Outline) -->
+                    <a asp-action="Index" asp-controller="Home" class="btn-lumi-outline me-2">
+                        <i class="bi bi-arrow-left-circle me-2"></i> Back
+                    </a>
+                    <!-- Login Button (Purple) -->
+                    <button type="submit" class="btn-lumi">
+                        <i class="bi bi-check-circle me-2"></i> Login
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

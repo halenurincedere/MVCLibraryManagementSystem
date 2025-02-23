@@ -1,0 +1,15 @@
+@model BookViewModel
+
+<div class="card mb-3">
+    <h5 class="card-header">Delete Book</h5>
+    <div class="card-body">
+        <p><strong>Book Name:</strong> @Model.Title</p>
+        <p><strong>Author:</strong> @Model.AuthorName</p>
+        <p><strong>Genre:</strong> @Model.Genre</p>
+    </div>
+</div>
+
+<form method="post" action="@Url.Action("DeleteConfirmed", "Book", new { id = Model.Id })">
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="@Url.Action("List", "Book")" class="btn btn-secondary">Cancel</a>
+</form>

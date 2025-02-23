@@ -1,0 +1,120 @@
+@model LibraryManagementSystem.Models.AuthorViewModel
+@{
+    ViewData["Title"] = "Add New Author";
+}
+
+<style>
+    /* General style and centered form container */
+    .form-container {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 0 20px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    /* Card styling */
+    .card-lumi {
+        border: none;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+    .card-header-lumi {
+        background-color: #fff;
+        color: #845ec2;
+        font-weight: 600;
+        font-size: 1.2rem;
+        border-bottom: 1px solid #eee;
+        border-radius: 10px 10px 0 0;
+        padding: 15px;
+    }
+    .card-body-lumi {
+        padding: 20px;
+    }
+
+    /* Form elements */
+    label {
+        font-weight: 600;
+        color: #555;
+    }
+    .form-control {
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+
+    /* Modern rounded buttons */
+    .btn-lumi {
+        background-color: #845ec2;
+        color: #fff;
+        border: none;
+        border-radius: 20px;
+        font-weight: 600;
+        transition: background-color 0.2s, transform 0.2s;
+        padding: 8px 20px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-lumi:hover {
+        background-color: #ff6fb7;
+        transform: translateY(-2px);
+        text-decoration: none;
+    }
+    .btn-lumi-outline {
+        background-color: #fff;
+        color: #845ec2;
+        border: 2px solid #845ec2;
+        border-radius: 20px;
+        font-weight: 600;
+        transition: border-color 0.2s, color 0.2s, transform 0.2s;
+        padding: 8px 20px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .btn-lumi-outline:hover {
+        border-color: #ff6fb7;
+        color: #ff6fb7;
+        transform: translateY(-2px);
+        text-decoration: none;
+    }
+
+    /* Remove underline from all links */
+    a, a:visited, a:hover, a:active {
+        text-decoration: none !important;
+    }
+</style>
+
+<div class="form-container">
+    <div class="card-lumi mb-3">
+        <div class="card-header-lumi">
+            Add New Author
+        </div>
+        <div class="card-body-lumi">
+            <form method="post">
+                <div class="form-group mb-2">
+                    <label asp-for="FirstName">First Name</label>
+                    <input type="text" class="form-control" asp-for="FirstName" required />
+                </div>
+                <div class="form-group mb-2">
+                    <label asp-for="LastName">Last Name</label>
+                    <input type="text" class="form-control" asp-for="LastName" required />
+                </div>
+                <div class="form-group mb-3">
+                    <label asp-for="DateOfBirth">Date of Birth</label>
+                    <input type="date" class="form-control" asp-for="DateOfBirth" required />
+                </div>
+                <div class="d-flex justify-content-end">
+                    <a asp-action="List" class="btn-lumi-outline me-2" title="Cancel">
+                        <i class="bi bi-arrow-left-circle"></i>
+                    </a>
+                    <button type="submit" class="btn-lumi" title="Save">
+                        <i class="bi bi-check-circle"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

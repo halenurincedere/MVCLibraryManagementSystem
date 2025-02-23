@@ -1,0 +1,153 @@
+﻿@using Microsoft.AspNetCore.Mvc.Razor
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - LUMI Library Management System</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <style>
+        /* Global: Apple-like font and new background */
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            /* Light gray-ish gradient background */
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            min-height: 100%;
+        }
+
+        /* Full page container */
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .content-area {
+            flex: 1;
+        }
+
+        /* Navbar: Semi-transparent white background with purple text */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 20px;
+            color: #845ec2 !important;
+            margin-right: 30px;
+        }
+        .navbar-nav .nav-link {
+            color: #845ec2 !important;
+            font-weight: 500;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #ff6fb7 !important;
+        }
+
+        /* Search Box */
+        .search-container {
+            position: relative;
+            width: 250px;
+        }
+        .search-container input {
+            width: 100%;
+            padding: 8px 40px 8px 16px;
+            border-radius: 20px;
+            border: 1px solid #ddd;
+        }
+        .search-container input::placeholder {
+            color: #777;
+        }
+        .search-container .search-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #845ec2;
+            cursor: pointer;
+        }
+        .search-container .search-icon:hover {
+            color: #ff6fb7;
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-sm">
+        <div class="container">
+            <!-- Left: LUMI + Search -->
+            <a class="navbar-brand" asp-controller="Home" asp-action="Index">LUMI</a>
+            <div class="search-container d-none d-lg-block">
+                <input type="text" placeholder="Search books or authors..." />
+                <i class="bi bi-search search-icon"></i>
+            </div>
+
+            <!-- Mobile Toggler -->
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain"
+                    aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Menus (Single ul) -->
+            <div class="collapse navbar-collapse justify-content-end" id="navbarMain">
+                <!-- Mobile search box -->
+                <div class="d-block d-lg-none my-2">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search books or authors..." />
+                        <i class="bi bi-search search-icon"></i>
+                    </div>
+                </div>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Home" asp-action="About">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Book" asp-action="List">Books</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Author" asp-action="List">Authors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Account" asp-action="Login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Account" asp-action="SignUp">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <div class="main-container">
+        <div class="content-area">
+            @RenderBody()
+        </div>
+        @await Html.PartialAsync("_FooterPartial")
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+    @section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+</body>
+</html>

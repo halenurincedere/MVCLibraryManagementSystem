@@ -1,0 +1,14 @@
+@model AuthorViewModel
+
+<div class="card mb-3">
+    <h5 class="card-header">Delete Author</h5>
+    <div class="card-body">
+        <p><strong>Name Surname:</strong> @Model.FirstName @Model.LastName</p>
+        <p><strong>Doğum Tarihi:</strong> @Model.DateOfBirth.ToShortDateString()</p>
+    </div>
+</div>
+
+<form method="post" action="@Url.Action("DeleteConfirmed", "Author", new { id = Model.Id })">
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="@Url.Action("List", "Author")" class="btn btn-secondary">Cancel</a>
+</form>
